@@ -1,0 +1,5 @@
+name = "testingexample-cosmosdb-account"
+location = "Central India"
+resource_group_name = "UPLApps-CI-AVD-RG-01"
+defaultExperience = "DocumentDB"
+subnet_id = "/subscriptions/a122f7bd-3fa7-4118-b809-fe7496405896/resourceGroups/UPLApps-CI-AVD-RG-01/providers/Microsoft.Network/virtualNetworks/UPLApps-CI-AVD-VNET-01/subnets/UPLApps-CI-AVD-Subnet-01"

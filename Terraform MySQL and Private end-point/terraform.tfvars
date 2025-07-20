@@ -1,0 +1,7 @@
+resource_group_name = "UPLApps-CI-AVD-RG-01"
+location            = "Central India"
+mysql_server_name   = "testdb1mysql"
+admin_username      = "azureuser"
+admin_password      = "P@ssword"
+vnet_name           = "UPLApps-CI-AVD-VNET-01"
+subnet_name         = "UPLApps-CI-AVD-Subnet-01"

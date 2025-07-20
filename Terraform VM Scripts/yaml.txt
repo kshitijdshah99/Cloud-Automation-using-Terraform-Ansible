@@ -1,0 +1,19 @@
+kshitij [ ~ ]$ az vm list-ip-addresses -g UPLApps-CI-AVD-RG-01 -n testvm1 --query "[].virtualMachine.network.privateIpAddresses[0]" -o tsv
+10.35.32.5
+kshitij [ ~ ]$ [azure_vms]
+10.35.32.5 ansible_user=azureuser ansible_ssh_private_key_file=~/.ssh/id_rsa
+bash: [azure_vms]: command not found
+bash: 10.35.32.5: command not found
+kshitij [ ~ ]$ 10.35.32.5 ansible_user=azureuser ansible_ssh_private_key_file=~/.ssh/id_rsa
+bash: 10.35.32.5: command not found
+kshitij [ ~ ]$ nano hosts.ini
+kshitij [ ~ ]$ ansible-playbook -i hosts.ini install_browser.yml
+ERROR! the playbook: install_browser.yml could not be found
+kshitij [ ~ ]$ nano install_browser.yml
+kshitij [ ~ ]$ ansible-playbook -i hosts.ini install_browser.yml
+
+
+ansible-playbook -i inventory.yml install_browser.yml
+
+
+

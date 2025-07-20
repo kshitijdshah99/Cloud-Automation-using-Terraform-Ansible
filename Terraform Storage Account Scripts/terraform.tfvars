@@ -1,0 +1,9 @@
+storage_account_name           = "upltest"
+resource_group_name            = "UPLApps-CI-AVD-RG-01"
+location                       = "Central India"
+account_tier                   = "Standard"
+account_replication_type       = "LRS"
+https_traffic_only_enabled     = true
+min_tls_version                = "TLS1_2"
+access_tier                    = "Hot"
+default_action                 = "Allow"

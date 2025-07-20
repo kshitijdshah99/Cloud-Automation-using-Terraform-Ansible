@@ -1,0 +1,5 @@
+resource_group_name = "UPLApps-CI-AVD-RG-01"
+location = "Central India"
+vnet_name = "UPLApps-CI-AVD-VNET-01"
+subnet_name = "APGW"
+subnet_cidr = "10.35.32.128/29"

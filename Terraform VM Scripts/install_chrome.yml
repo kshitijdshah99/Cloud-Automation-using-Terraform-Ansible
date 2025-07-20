@@ -1,0 +1,16 @@
+---
+- name: Install Google Chrome on Windows VM
+  hosts: windows
+  become: yes
+  become_method: runas
+  become_user: SYSTEM 
+  tasks:
+    - name: Ensure Chocolatey is installed
+      win_chocolatey:
+        name: chocolatey
+        state: present
+
+    - name: Install Google Chrome
+      win_chocolatey:
+        name: googlechrome
+        state: present

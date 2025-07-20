@@ -1,0 +1,6 @@
+az aks get-credentials \
+  --resource-group "UPLApps-CI-AVD-RG-01" \
+  --name "testaks1"
+
+
+kubectl get nodes

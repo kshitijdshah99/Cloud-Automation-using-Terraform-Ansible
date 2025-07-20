@@ -1,0 +1,12 @@
+all:
+  children:
+    windows:
+      hosts:
+        winvm01:
+          ansible_host: 20.204.178.42
+          ansible_user: azureuser
+          ansible_password: P@ssword
+          ansible_connection: winrm
+          ansible_winrm_transport: basic
+          ansible_port: 5985
+          ansible_winrm_server_cert_validation: ignore

@@ -1,0 +1,16 @@
+resource_group_name           = "UPLApps-CI-AVD-RG-01"
+location                      = "centralindia"
+vnet_name                     = "UPLApps-CI-AVD-VNET-01"
+subnet_name                   = "UPLApps-CI-AVD-Subnet-01"
+vnet_resource_group_name      = "UPLApps-CI-AVD-RG-01"
+vnet_address_space            = "10.0.0.0/16"
+subnet_address_prefix         = "10.0.1.0/24"
+nic_name                      = "testnic3"
+vm_name                       = "testvm3"
+vm_size                       = "Standard_B2as_v2"
+admin_username                = "azureuser"
+admin_password                = "P@ssword"
+nsg_name                      = "mynsg3"
+os_disk_size                  = 127
+os_disk_type                  = "StandardSSD_LRS"
+enable_accelerated_networking = false

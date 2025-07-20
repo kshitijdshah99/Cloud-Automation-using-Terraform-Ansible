@@ -1,0 +1,13 @@
+subscription_id           = "a122f7bd-3fa7-4118-b809-fe7496405896"
+resource_group_name       = "UPLApps-CI-AVD-RG-01"
+location                  = "Central India"
+server_name               = "testdb123"
+postgresql_version        = "16"
+sku_name                  = "GP_Standard_D2ds_v5"
+vcpu_count                = 2
+memory_in_gb              = 8
+storage_in_gb             = 32
+administrator_login       = "azureuser"
+administrator_password    = "P@ssword"
+geo_redundancy            = false
+private_dns_zone_id       = "/subscriptions/a122f7bd-3fa7-4118-b809-fe7496405896/resourceGroups/uplapps-inc-prd-rg-01/providers/Microsoft.Network/privateDnsZones/privatelink.postgres.database.azure.com"
