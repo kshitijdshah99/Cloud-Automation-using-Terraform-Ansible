@@ -1,152 +1,153 @@
-# Cloud Automation: Terraform & Ansible
+```markdown
+# ☁️ Cloud Automation using Terraform & Ansible
 
-Automated provisioning and configuration of Azure infrastructure using **Terraform** and **Ansible**.
+Infrastructure-as-Code (IaC) for provisioning and configuring Azure resources using **Terraform** and **Ansible** — including automation scripts for **Splunk**, **Crowdstrike**, and **Sapphire**.
 
 ---
 
-## 📂 Repository Overview
+## 📁 Repository Structure
 
-Each folder targets a specific Azure service or infrastructure pattern:
+This repository is modularized by Azure resource types and includes both Terraform infrastructure provisioning and Ansible-based VM configuration.
 
-* `Terraform AKS/` – Azure Kubernetes Service deployment
-* `Terraform Application Gateway/` – Perimeter gateway setup
-* `Terraform CosmosDB/` – Cosmos DB provisioning
-* `Terraform Load Balancer/` – Standard LB configuration
-* `Terraform MySQL and Private end-point/` – MySQL with private endpoint
-* `Terraform Postgre DB and Private end-point/` – PostgreSQL with private endpoint
-* `Terraform Storage Account Scripts/` – Storage account deployments
-* `Terraform VM Scripts/` – Virtual machine creation + Ansible bootstrap
-* `Terraform Vnet Scripts/` – Virtual network and subnets setup
+### 🔧 Infrastructure Modules
 
-Each directory contains `.tf` files (Terraform configurations), `.tfvars` (variables), and `providers.tf`.
+| Folder                                 | Description                                 |
+| -------------------------------------- | ------------------------------------------- |
+| `Terraform AKS/`                       | Deploys Azure Kubernetes Service            |
+| `Terraform Application Gateway/`       | Creates a WAF-enabled Application Gateway   |
+| `Terraform CosmosDB/`                  | Globally distributed Cosmos DB setup        |
+| `Terraform Load Balancer/`             | Deploys internal/external load balancers    |
+| `Terraform MySQL and Private end-point/` | Provisions MySQL DB with private access   |
+| `Terraform Postgre DB and Private end-point/` | PostgreSQL DB with secure private endpoint |
+| `Terraform Storage Account Scripts/`   | Storage account provisioning scripts        |
+| `Terraform VM Scripts/`                | VM provisioning and Ansible bootstrap       |
+| `Terraform Vnet Scripts/`              | Virtual Network, subnets, NSGs configuration|
+
+### 📦 Automation Add-ons
+
+| Folder / File                    | Description                                           |
+| ------------------------------- | ----------------------------------------------------- |
+| `automation_scripts.zip`        | Contains Ansible automation playbooks for:<br>• Splunk<br>• Crowdstrike<br>• Sapphire |
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### ✅ Prerequisites
 
-* Terraform v1.x installed
-* Ansible v2.15+ installed
-* Azure CLI logged into subscription
-* SSH key for VM access (for Ansible)
+- Terraform v1.x
+- Ansible v2.15+
+- Azure CLI authenticated to your subscription
+- SSH key pair for VM access (required by Ansible)
 
-### Setup Terraform
+### ⚙️ Terraform Workflow
 
 ```bash
-cd "<module-folder>"
+cd "<Terraform module>"
 terraform init
 terraform plan -out=tfplan
 terraform apply tfplan
 ```
 
-### Bootstrap VMs with Ansible
+### 🛠️ Run Ansible Playbooks
 
-After provisioning VMs:
+Once the VMs are provisioned:
 
 ```bash
 cd "Terraform VM Scripts"
-ansible-playbook -i hosts.ini install_chrome.yml --private-key /path/to/key
+ansible-playbook -i hosts.ini install_chrome.yml --private-key /path/to/private_key.pem
 ```
 
-Adjust paths and playbooks according to your needs.
+> 🔄 Customize your playbooks as per application setup (e.g., Splunk, Crowdstrike, Sapphire).
 
 ---
 
-## 🧩 How It Works Together
+## 🧩 How Terraform and Ansible Work Together
 
-1. **Terraform** creates infrastructure (networks, DBs, VMs, etc.).
-2. **Ansible** connects to provisioned VMs over SSH and configures them.
-3. VM setup includes installing dependencies, configuring services, or deploying applications.
-
----
-
-## 🎯 Folder Breakdown
-
-| Folder                              | Description                          |
-| ----------------------------------- | ------------------------------------ |
-| `Terraform AKS`                     | AKS + managed resources              |
-| `Terraform Application Gateway`     | WAF-enabled gateway deployment       |
-| `Terraform CosmosDB`                | Provisioning globally distributed DB |
-| `Terraform Load Balancer`           | Internal/external LB with rules      |
-| `Terraform MySQL ...`               | Private endpoint MySQL DB            |
-| `Terraform Postgre DB ...`          | Private endpoint PostgreSQL DB       |
-| `Terraform Storage Account Scripts` | Storage accounts for data/archive    |
-| `Terraform VM Scripts`              | Generates VMs and invokes Ansible    |
-| `Terraform Vnet Scripts`            | VNet/subnet/SPG/NSG configurations   |
+1. **Terraform** provisions infrastructure — networks, databases, VMs, etc.
+2. **Ansible** configures the VMs by connecting over SSH.
+3. Scripts can install software (e.g., Splunk, Crowdstrike agents) and configure services.
 
 ---
 
-## 🛠️ Usage Workflow
+## 🔍 Example Usage
 
-1. **Deploy infrastructure**
-   Navigate into the folder of choice and run Terraform.
+```bash
+# Deploy AKS Cluster
+cd "Terraform AKS"
+terraform init && terraform apply -auto-approve
 
-2. **Run Ansible (if required)**
-   In `Terraform VM Scripts/` follow playbook instructions to configure VMs.
-
-3. **Scale or update**
-   Re-run Terraform & Ansible; changes are idempotent.
-
----
-
-## ✅ Best Practices
-
-* Use `terraform fmt` and `terraform validate` before apply
-* Commit and review code using Git branches & PRs
-* Consider remote states (e.g., Azure Storage backend) for team collaboration
-* Add a `.gitignore` to prevent committing sensitive files (keys, `.tfvars` with secrets)
+# Provision VMs and configure with Ansible
+cd "Terraform VM Scripts"
+terraform init && terraform apply -auto-approve
+ansible-playbook -i hosts.ini install_splunk.yml
+```
 
 ---
 
-## 📘 Further Steps
+## 💡 Best Practices
 
-* Add modular Terraform code with `modules/`
-* Integrate Azure Key Vault for secret storage
-* Add CI pipelines (GitHub Actions, Azure DevOps)
-* Document outputs and input defaults in `README.md` of each folder
+- Format code: `terraform fmt`
+- Validate configurations: `terraform validate`
+- Use `.gitignore` to exclude sensitive files (e.g., `*.tfvars`, private keys)
+- Implement remote state backend for team environments (e.g., Azure Storage)
+- Follow modular code structure via `modules/` directory (recommended)
+
+---
+
+## 🔐 Secrets & Security
+
+- Store sensitive credentials in **Azure Key Vault**
+- Avoid hardcoding secrets in `.tfvars` or Ansible playbooks
+- Use Ansible Vault for encrypting sensitive config files
+
+---
+
+## 🧪 Future Enhancements
+
+- Modularize Terraform scripts under a `modules/` folder
+- Add CI/CD integration (GitHub Actions or Azure DevOps)
+- Auto-document input/output variables per module
+- Expand Ansible roles and reusable templates
+
+---
+
+## 📘 Documentation for Scripts
+
+If you're using the automation playbooks in the `.zip` file:
+
+- Extract the archive.
+- Navigate to each script (e.g., `install_splunk.yml`, `install_crowdstrike.yml`)
+- Review variables and inventory in `hosts.ini`
+- Ensure proper permissions on SSH keys
 
 ---
 
 ## 📝 License
 
-This project is licensed under the MIT License — you are free to use, modify, and distribute this software with proper attribution.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) — you are free to use, modify, and distribute this software with proper attribution.
 
 ---
 
-### Usage Examples
+## 🙋‍♂️ Support
 
-```bash
-# AKS Example
-cd "Terraform AKS"
-terraform init && terraform apply -auto-approve
+For bugs or feature requests:
 
-# VM + Ansible example
-cd "Terraform VM Scripts"
-terraform init && terraform apply -auto-approve
-ansible-playbook -i hosts.ini install_chrome.yml
+- Open a GitHub Issue with logs and context
+- Mention the module or script being used
+
+---
+
+## 🤝 Contributions
+
+Pull Requests are welcome!
+
+1. Fork this repository
+2. Create a feature branch
+3. Commit and push your changes
+4. Open a pull request for review
+
+---
+
+**Happy Automating!** 🚀
 ```
-
----
-
-## 🛍️ Support
-
-For questions or issues:
-
-* Open a GitHub Issue
-* Include logs, error messages, and context
-
----
-
-### 👍 Contributions
-
-PRs are welcome! To contribute:
-
-1. Fork the repo
-2. Create a new branch
-3. Make changes
-4. Submit a PR for review
-
----
-
-*Happy automating!* 🚀
