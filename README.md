@@ -110,7 +110,7 @@ Adjust paths and playbooks according to your needs.
 
 ## 📝 License
 
-Specify your intended license (e.g., MIT, Apache 2.0) here.
+This project is licensed under the MIT License — you are free to use, modify, and distribute this software with proper attribution.
 
 ---
 
