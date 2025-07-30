@@ -150,4 +150,3 @@ Pull Requests are welcome!
 ---
 
 **Happy Automating!** 🚀
-```
