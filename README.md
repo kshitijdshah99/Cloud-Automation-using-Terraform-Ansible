@@ -1,4 +1,4 @@
-```markdown
+
 # ☁️ Cloud Automation using Terraform & Ansible
 
 Infrastructure-as-Code (IaC) for provisioning and configuring Azure resources using **Terraform** and **Ansible** — including automation scripts for **Splunk**, **Crowdstrike**, and **Sapphire**.
